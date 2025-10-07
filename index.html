@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果晨导航网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            /* 背景图片 - 替换下面的URL为您自己的背景图片路径 */
+            background-image: url('2.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* 背景遮罩层，增强文字可读性 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            z-index: 1;
+        }
+        
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+        
+        .nav-button {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-button:nth-child(1) .nav-icon {
+            background: linear-gradient(45deg, #FE2C55, #ff0050);
+        }
+        
+        .nav-button:nth-child(2) .nav-icon {
+            background: linear-gradient(45deg, #e60000, #ff3333);
+        }
+        
+        .nav-button:nth-child(3) .nav-icon {
+            background: linear-gradient(45deg, #FF5000, #ff6600);
+        }
+        
+        .nav-button:nth-child(4) .nav-icon {
+            background: linear-gradient(45deg, #00a8ff, #0097e6);
+        }
+        
+        .nav-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .video-section {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .avatar {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- 头像区域 - 替换下面的src为您自己的头像图片路径 -->
+            <div class="avatar">
+                <img src="4.png" alt="头像">
+            </div>
+            <h1 class="title">果晨导航网站</h1>
+        </div>
+        
+        <div class="nav-buttons">
+            <!-- 抖音 -->
+            <a href="https://www.douyin.com" target="_blank" class="nav-button">
+                <div class="nav-icon">♪</div>
+                <div class="nav-name">抖音</div>
+            </a>
+            
+            <!-- 网易云游戏 -->
+            <a href="https://cg.163.com" target="_blank" class="nav-button">
+                <div class="nav-icon">🎮</div>
+                <div class="nav-name">网易云游戏</div>
+            </a>
+            
+            <!-- 快手 -->
+            <a href="https://www.kuaishou.com" target="_blank" class="nav-button">
+                <div class="nav-icon">🚀</div>
+                <div class="nav-name">快手</div>
+            </a>
+            
+            <!-- 我的世界 -->
+            <a href="https://mc.js.cool" target="_blank" class="nav-button">
+                <div class="nav-icon">⛏️</div>
+                <div class="nav-name">我的世界</div>
+            </a>
+        </div>
+        
+        <div class="video-section">
+            <!-- 视频区域 - 替换下面的src为您自己的视频路径 -->
+            <div class="video-container">
+                <video controls poster="6.png">
+                    <source src="1.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 果晨工作室 | chen陈凌霄</p>
+        </div>
+    </div>
+
+    <script>
+        // 这里可以添加一些交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.nav-button');
+            
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
